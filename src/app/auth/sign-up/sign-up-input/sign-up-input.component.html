@@ -1,0 +1,54 @@
+<form (ngSubmit)="onSignUp()" name="signUpForm" #signUpForm="ngForm"
+      ngNativeValidate>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group pb-3">
+        <input type="text" id="firstName" class="form-control" placeholder="First Name" [(ngModel)]="model.firstname"
+               name="firstName" required>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group pb-3">
+        <input type="text" id="lastName" class="form-control" placeholder="Last Name" [(ngModel)]="model.lastname"
+               name="lastName" required>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group pb-3">
+        <input type="text" id="email" class="form-control" placeholder="Email" [(ngModel)]="model.email" name="email" required>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group mb-0 position-relative">
+        <i class="fa position-absolute showIcon cursor" [ngClass]="!showPassword ? 'fa-eye-slash' : 'fa-eye'"
+           (click)="togglePassword()"></i>
+        <input (change)="passwordIndicator($event)" (input)="passwordIndicator($event)" [type]="!showPassword ? 'password' : 'text'" id="password" class="form-control" placeholder="Password"
+               [(ngModel)]="model.password" name="password" required>
+      </div>
+      <div class="d-inline-flex mb-5">
+        <div id="first__level" class="password-strength__div mr-3" [ngClass]="passwordStrength >= 20 ? colors[passwordStrength] : ''"></div>
+        <div id="second__level" class="password-strength__div mr-3" [ngClass]="passwordStrength >= 40 ? colors[passwordStrength] : ''"></div>
+        <div id="third__level" class="password-strength__div mr-3" [ngClass]="passwordStrength >= 60 ? colors[passwordStrength] : ''"></div>
+        <div id="fourth__level" class="password-strength__div mr-3" [ngClass]="passwordStrength >= 80 ? colors[passwordStrength] : ''"></div>
+        <div id="fifth__level" class="password-strength__div" [ngClass]="passwordStrength >= 100 ? colors[passwordStrength] : ''"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <button [disabled]="signUpForm.invalid" class="btn btn-blue w-100" type="submit"><span *ngIf="!submitted">Sign In</span> <span *ngIf="submitted" class="spinner-grow text-light" role="status">
+    <span class="sr-only">Loading...</span>
+  </span></button>
+
+  <div class="auth__div mt-4 d-inline-flex">
+    <mat-checkbox  class="text-secondary pt-1" name="checkbox" required>
+    </mat-checkbox>
+
+    <p class="pl-2">I have read and agreed to the <span class="text-blue cursor">terms of service</span>
+      and <span class="text-blue cursor">conditions</span> of The house of beats</p>
+  </div>
+</form>

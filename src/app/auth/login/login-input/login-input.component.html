@@ -1,0 +1,16 @@
+<form (ngSubmit)="onLogin()" name="loginForm" #loginForm="ngForm"
+      ngNativeValidate>
+  <div class="form-group pb-3">
+    <input type="text" id="email" class="form-control" placeholder="Email" [(ngModel)]="model.email" name="email" required>
+  </div>
+
+  <div class="form-group pb-3 position-relative">
+
+    <i class="fa position-absolute showIcon cursor" [ngClass]="!showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePassword()"></i>
+    <input [type]="!showPassword ? 'password' : 'text'" id="password" class="form-control" placeholder="Password" [(ngModel)]="model.password" name="password" required>
+  </div>
+
+  <button [disabled]="loginForm.invalid" class="btn btn-blue w-100" type="submit"><span *ngIf="!submitted">Sign In</span> <span *ngIf="submitted" class="spinner-grow text-light" role="status">
+    <span class="sr-only">Loading...</span>
+  </span></button>
+</form>
